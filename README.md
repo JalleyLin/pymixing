@@ -1,4 +1,5 @@
 # Pymixing
+![](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fawave.com.au%2Fwp-content%2Fuploads%2F2019%2F04%2Fssl-six_113885_2_1.jpg&refer=http%3A%2F%2Fawave.com.au&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645261111&t=8b8f20fff62c6872e43c40b9b67cddde)  
 ## 项目描述 Project description
 
 'Pymixing'是一个基于'soundfile'，'numpy'，'librosa','scipy'和'pyloudnorm'的python音频处理库。启发于传统调音台设备和数字音频工作站，旨在通过简洁的代码，为音频领域的开发者、研究者提供帮助。目前，pymixing不仅支持读写wav格式的单声道文件，还支持相同格式的立体声文件，并且已经可以根据需求导出相应的48k&24bit或44.1k&16bit的wav格式单声道文件。
