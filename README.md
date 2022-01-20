@@ -84,5 +84,18 @@ Using `cut(audio, time, crossfade=True, cross_time=200)`, it can slice audio wit
 a, b = cut(track1, time=15.2)
 ~~~
 
-调用`cut(audio, time, crossfade=True, cross_time=200)`
+调用`adjust_level(self,target)`,可以根据lufs电平调节响度，例如，将切分后的track1的前一部分（a）的lufs电平调节为-22lufs.
 
+Using`adjust_level(self,target)`, it can adujust lufs level of the audio clip. For example，adusting the lufs level of the former part of track1 to -22LUFS.
+
+~~~python
+a.adjust_level(traget=-22)
+~~~
+
+尝试调用`splice(a, b, crossfade=True, cross_time=200)`，它能将切分的音频片段重新拼接起来。
+
+Using `splice(a, b, crossfade=True, cross_time=200)`, it can concatenate 2 audio clips. 
+
+~~~python
+track2 = splice(a, b)
+~~~
