@@ -12,5 +12,5 @@ Pymixing已经发布在PYPI上，在终端（Mac电脑）中输入以下代码�
 Pymixing has been release on PYPI，In a modern Python, you can use the code showing below to download and install the latest release of Pymixing and its dependencies. 
 
 ~~~python
-                                                                 pip install pymixing
+                                                         pip install pymixing
 ~~~
