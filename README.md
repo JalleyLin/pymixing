@@ -23,3 +23,7 @@ pip install pymixing
 So what can we do with pymixing？
 
 ### 音频导入/导出  Load/Export Functions
+
+读取wav格式的文件，可以调用`load_track(path, filename)`函数实现。
+
+If you need to open a wav format mono&stereo aduio file，you can try `load_track(path, filename)`.
