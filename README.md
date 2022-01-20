@@ -2,7 +2,7 @@
 
 ## 项目描述 Project description
 
-*Pymixing*是一个基于*soundfile*，*numpy*，*librosa*, *scipy* 和 *pyloudnorm* 的python音频处理库。启发于传统调音台设备和数字音频工作站，旨在通过简洁的代码，为音频领域的开发者、研究者提供帮助。目前，pymixing不仅支持读写wav格式的单声道文件，还支持相同格式的立体声文件，并且已经可以根据需求导出相应的48k&24bit或44.1k&16bit的wav格式单声道文件。
+*Pymixing*是一个基于*soundfile*，*numpy*，*librosa*, *scipy* 和 *pyloudnorm* 的python音频处理库。启发于传统调音台设备和数字音频工作站，旨在通过简洁的代码，为音频领域的开发者、研究者提供帮助。目前，pymixing不仅支持读写wav格式的单声道文件，还支持相同格式的立体声文件，并且已经可以根据需求导出相应的48k & 24bit或44.1k & 16bit的wav格式单声道文件。
 
 *Pymixing* is a python audio processing / analysis library based on *soundfile*, *numpy*, *librosa*, *scipy* and *pyloudnorm*.Inspired by traditional analog console and digital audio workstations, it aims to provide audio researchers with flexible assistance to deal with the complex audio processing / detection tasks. Currently, pymixing can not only supports the mono files in wav format, but also the stereo files. Besides,it is already possible to export the corresponding 48k / 24bit or 44.1k / 16bit wav format mono/stereo audio files as required.
 
@@ -34,7 +34,7 @@ track1 = pymx.load_track('F:/products/J_Full','09_ElecGtr2.wav') #'.wav' is need
 ~~~
 
 将track1导出为16bit的wav文件，可以调用`export(self,savepath)`函数实现。
-If you need to export track1 as a 16 bit wav format mono&stereo aduio file，you can try `export(self,savepath)`.
+If you need to export track1 as a 16 bit wav format mono & stereo aduio file，you can try `export(self,savepath)`.
 
 ~~~python
 track1.export('F:/products/J_Full') #the saved filename is as same as the orignal load file.
@@ -48,4 +48,14 @@ track1.change_name('demo.wav')
 track1.export('F:/products/J_Full') #the saved filename is 'demo.wav' now.
 ~~~
 
-此外，如果希望导出24bit的音频文件，可以尝试
+此外，如果希望导出24bit的音频文件，可以尝试`export24(self,savepath)`
+Besides，If you need to export track1 as a 24 bit wav format mono & stereo aduio file，you can try `export(self,savepath)`.
+
+~~~python
+track1.export24('F:/products/J_Full') 
+~~~
+
+
+### 检测音频参数  Checking audio features
+
+和调音台 & daw类似，pymixing也可以检测多种音频参数，并且通过简单的函数轻松调用查看，例如，我们希望查看之前读取的track1音轨的峰值电平（peak）和lufs电平参数,可以直接用print函数打印出来查看。
