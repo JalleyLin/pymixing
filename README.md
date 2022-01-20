@@ -105,5 +105,5 @@ track2 = splice(a, b)
 If you want to copy the audio clip, try `copy(self)`.
 
 ~~~python
-track3 = track2.copy
+track3 = track2.copy()
 ~~~
