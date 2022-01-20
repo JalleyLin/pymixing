@@ -99,3 +99,11 @@ Using `splice(a, b, crossfade=True, cross_time=200)`, it can concatenate 2 audio
 ~~~python
 track2 = splice(a, b)
 ~~~
+
+如果想要复制音频片段，可以用`copy(self)`。
+
+If you want to copy the audio clip, try `copy(self)`.
+
+~~~python
+track3 = track2.copy
+~~~
