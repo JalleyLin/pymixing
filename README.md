@@ -34,6 +34,7 @@ track1 = pymx.load_track('F:/products/J_Full','09_ElecGtr2.wav') #'.wav' is need
 ~~~
 
 将track1导出为16bit的wav文件，可以调用`export(self,savepath)`函数实现。
+
 If you need to export track1 as a 16 bit wav format mono & stereo aduio file，you can try `export(self,savepath)`.
 
 ~~~python
@@ -49,6 +50,7 @@ track1.export('F:/products/J_Full') #the saved filename is 'demo.wav' now.
 ~~~
 
 此外，如果希望导出24bit的音频文件，可以尝试`export24(self,savepath)`
+
 Besides，If you need to export track1 as a 24 bit wav format mono & stereo aduio file，you can try `export(self,savepath)`.
 
 ~~~python
@@ -59,9 +61,11 @@ track1.export24('F:/products/J_Full')
 ### 检测音频参数  Checking audio features
 
 和调音台 & daw类似，pymixing也可以检测多种音频参数，并且通过简单的函数轻松调用查看，例如，我们希望查看之前读取的track1音轨的峰值电平（peak）和lufs电平参数,可以直接用print函数打印出来查看。
+
 Like many DAWs, pymixing can also be used to check many different parameters like peak or LUFS level.
+
 ~~~python
 print(track1.peak) #peak of the audio signal (dBFS)
-print(track1.lufs) # LUFS level (based on *ITU-R BS.1770-4*) of the audio signal
+print(track1.lufs) # LUFS level (based on ITU-R BS.1770-4) of the audio signal
 print(track1.rms)  # RMS level of the audio signal (dBFS)
 ~~~
