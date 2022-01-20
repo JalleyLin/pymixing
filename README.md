@@ -76,11 +76,13 @@ Pymixing还内置有强大的音频剪辑功能。
 
 Pymixing also has powerful eaditing functions.
 
-它能进行高精度的（精度为0.001s，但是没有按照60s换算）音频剪辑。例如，将track1在第15.2秒处进行切分，切分为两个部分，暂且命名为a和b.
+调用`cut(audio, time, crossfade=True, cross_time=200)`，它能进行高精度的（精度为0.001s，但是没有按照60s换算）音频剪辑。例如，将track1在第15.2秒处进行切分，切分为两个部分，暂且命名为a和b。
 
-Using `cut(audio, time, crossfade=True, cross_time=200)`, it can slice audio with（or withou）the crossfade. For example，cut track1 into 2 parts， and the former part has a length of 15.2 seconds.
+Using `cut(audio, time, crossfade=True, cross_time=200)`, it can slice audio with（or without）the crossfade. For example，cut track1 into 2 parts, and the former part has a length of 15.2 seconds.
 
 ~~~python
 a, b = cut(track1, time=15.2)
 ~~~
+
+调用`cut(audio, time, crossfade=True, cross_time=200)`
 
