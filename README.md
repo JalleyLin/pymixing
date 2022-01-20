@@ -27,3 +27,25 @@ So what can we do with pymixing？
 读取wav格式的文件，可以调用`load_track(path, filename)`函数实现。
 
 If you need to open a wav format mono&stereo aduio file，you can try `load_track(path, filename)`.
+
+~~~python
+import pymixing as pymx
+track1 = pymx.load_track('F:/products/J_Full','09_ElecGtr2.wav') #'.wav' is needed in filename.
+~~~
+
+将track1导出为16bit的wav文件，可以调用`export(self,savepath)`函数实现。
+If you need to export track1 as a 16 bit wav format mono&stereo aduio file，you can try `export(self,savepath)`.
+
+~~~python
+track1.export('F:/products/J_Full') #the saved filename is as same as the orignal load file.
+~~~
+
+保存的文件名是默认与读取文件名一致的，如果想要改名后再导出这个文件，可以使用 `change_name(self,new_name)`
+The saved filename is as same as the orignal load file，if you want to change the name of the wav file to be saved,please check `change_name(self,new_name)`.
+
+~~~python
+track1.change_name('demo.wav')
+track1.export('F:/products/J_Full') #the saved filename is 'demo.wav' now.
+~~~
+
+此外，如果希望导出24bit的音频文件，可以尝试
