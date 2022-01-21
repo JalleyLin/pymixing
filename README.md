@@ -191,3 +191,9 @@ Value of position is from -100 to 100. If you want to pan signal to left，try -
 track2 = track1.mono2stereo() #First you need to convert the signal type of track1
 track2.pan(position=-99)
 ~~~
+
+ @article{steinmetz2020mixing,
+            title={Automatic multitrack mixing with a differentiable mixing console of neural audio effects},
+            author={Steinmetz, Christian J. and Pons, Jordi and Pascual, Santiago and Serrà, Joan},
+            journal={arXiv:2010.10291},
+            year={2020}}
