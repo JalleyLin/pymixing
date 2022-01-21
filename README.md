@@ -10,7 +10,7 @@
 
 Pymixing已经发布在[PYPI](https://pypi.org/project/pymixing/)上，在终端（Mac电脑）中输入以下代码就可以实现下载。
 
-Pymixing has been released on [PYPI](https://pypi.org/project/pymixing/)，In a modern Python, you can use the code  below to download and install the latest release of Pymixing and its dependencies. 
+Pymixing has been released on [PYPI](https://pypi.org/project/pymixing/)，In a modern Python, you can use the code below to download and install the latest release of Pymixing and its dependencies. 
 
 ~~~python
 pip install pymixing
@@ -123,3 +123,31 @@ Finally ,you can use `normalize(self,i=0.5)` to normalize the track, i means the
 ~~~python
 track_group.normalize(i=1)
 ~~~
+
+### 音频效果 Audio Effects
+
+Pymixing还内置有常见的音频效果。
+
+The common audio effects are also provided by pymixing.
+
+如果想使用均衡器（EQ），可以调用`eq(self,type,mode='auto',f0=440, Q=1., gain=0)`。pymixing内置的均衡器（EQ）提供有两种模式，分别是*auto*(自动)和*manul*（手动），自动模式通过交互的方式让使用者提供所需的参数，而手动模式则在eq函数中直接输入所需的参数。
+
+If you want to use the equalizer(EQ) to process the audio signal, please try `eq(self,type,mode='auto',f0=440, Q=1., gain=0)`. 2 modes (*auto* and *manul*) have been provided, in *auto* mode you will need to type in the parameters as required, while in *manul* mode you will need to type in the parameters as usual.
+
+Pymixing提供五种滤波器类型供选择，分别为低通滤波器（'lp'）、高通滤波器（'hp'）、低搁架式滤波器（'ls'）、高搁架式滤波器（'hs'）、钟型滤波器（'peak'）。函数所需的输入参数如下所示。
+
+Pymixing provides 5 filter types: low pass fileter ('lp'), high pass filter ('hp'), low shelf filter ('ls'), high shelf filter ('hs') and peak filter ('peak'). The parameters needed is showing below.
+
+~~~shell
+type:    滤波器类型    filter types                                          'lp'/'hp'/'ls'/'hs'/'peak'
+mode     均衡器模式    mode of eq function                                   'auto'/'manul'
+f0:      中心频率      center frequency point                                0 to (samplerate/2)     
+Q:       峰值带宽      Q value (bandwidth)                                   0 to 10 (dBFS)
+gain:    增益          How much you want to boost (+) or substract (-)       0 to 20 (dBFS)
+~~~
+
+
+
+
+
+
