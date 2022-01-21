@@ -81,7 +81,7 @@ track2 = track1.mono2stereo()
 track3 = track2.stereo2mono()
 ~~~
 
-### 检测音频参数  Checking audio features
+### 检测音频参数  Checking Audio Features
 
 和调音台 & daw类似，pymixing也可以**检测多种音频参数**，并且通过简单的函数轻松调用查看，例如，我们希望查看之前读取的track1音轨的峰值电平（peak）和lufs电平参数,可以直接用print函数打印出来查看。
 
