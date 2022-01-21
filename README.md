@@ -72,9 +72,9 @@ print(track1.rms)  # RMS level of the audio signal (dBFS)
 
 ### 音频剪辑 Audio Editing
 
-Pymixing还内置有强大的音频剪辑功能。
+与Pydub类似，Pymixing还内置有强大的音频剪辑功能。
 
-Pymixing also has powerful eaditing functions.
+Like pydub， pymixing also has powerful eaditing functions.
 
 调用`cut(audio, time, crossfade=True, cross_time=200)`，它能进行高精度的（精度为0.001s，但是没有按照60s换算）音频剪辑。例如，将track1在第15.2秒处进行切分，切分为两个部分，暂且命名为a和b。
 
@@ -106,4 +106,12 @@ If you want to copy the audio clip, try `copy(self)`.
 
 ~~~python
 track3 = track2.copy()
+~~~
+
+如果想要合并两条音轨（两个音频文件），可以用`group(a,b,name)`，使用时请务必保持两条音轨前段对齐。
+
+If you want to bounce 2 tracks into 1 track, try `group(a,b,name)`.Please keep 2 tracks aligned.
+
+~~~python
+track_group = group(track2, track3, name='group_file.wav')
 ~~~
