@@ -136,7 +136,7 @@ If you want to use the **equalizer(EQ)** to process the audio signal, please try
 
 Pymixing提供五种滤波器类型供选择，分别为低通滤波器（'lp'）、高通滤波器（'hp'）、低搁架式滤波器（'ls'）、高搁架式滤波器（'hs'）、钟型滤波器（'peak'）。函数所需的输入参数如下所示。
 
-Pymixing provides 5 filter types: low pass fileter ('lp'), high pass filter ('hp'), low shelf filter ('ls'), high shelf filter ('hs') and peak filter ('peak'). The parameters needed is showing below.
+Pymixing provides 5 filter types: low pass fileter ('lp'), high pass filter ('hp'), low shelf filter ('ls'), high shelf filter ('hs') and peak filter ('peak'). The parameters needed are showing below.
 
 ~~~shell
 type:    滤波器类型    filter types                                          'lp'/'hp'/'ls'/'hs'/'peak'
