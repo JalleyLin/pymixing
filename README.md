@@ -33,7 +33,7 @@ import pymixing as pymx
 track1 = pymx.load_track('F:/products/J_Full','09_ElecGtr2.wav') #'.wav' is needed in filename.
 ~~~
 
-将track1导出为16bit的wav文件，可以调用`export(self,savepath)`函数实现。
+将track1**导出**为16bit的wav文件，可以调用`export(self,savepath)`函数实现。
 
 If you need to **export track1 as a 16 bit wav format mono & stereo aduio file**，you can try `export(self,savepath)`.
 
@@ -49,7 +49,7 @@ track1.change_name('demo.wav')
 track1.export('F:/products/J_Full') #the saved filename is 'demo.wav' now.
 ~~~
 
-此外，如果希望导出24bit的音频文件，可以尝试`export24(self,savepath)`
+此外，如果希望**导出24bit的音频文件**，可以尝试`export24(self,savepath)`
 
 Besides，If you need to **export track1 as a 24 bit wav format mono & stereo aduio file**，you can try `export(self,savepath)`.
 
