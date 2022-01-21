@@ -182,11 +182,11 @@ Pymixing内置有**声像调节功能（panning）**,通过调用 `pan(self,posi
 
 Pymixing can also **pan the stereo signal to left/center/right** by using `pan(self,position)`. Before using, please make sure the`object` type of the input signal is `stereo_track`.
 
-position参数的取值范围为-100到100，取值小于0（-100，0）声像偏左，取值大于0（0,100），声像偏右，取值为0，声像居中。但是不能取-100和100两个值。例如，我们希望把track1（单声道信号）变成立体声格式后，将其声像调节到左边
+position参数的取值范围为-100到100，取值小于0（-100，0）声像偏左，取值大于0（0,100），声像偏右，取值为0，声像居中。但是不能取-100和100两个值。例如，我们希望把track1（单声道信号）变成立体声格式后，将其声像调节到左边。
 
-Value of position is from -100 to 100. If you want to pan signal to left，try -99 to -1. And if you want to pan signal to right，try 1 to 99.  
+Value of position is from -100 to 100. If you want to pan signal to left，try -99 to -1. And if you want to pan signal to right，try 1 to 99. For example, if you want to pan track1 (mono signal) to the hard left side:
 
 ~~~python
-track2 = track1.mono2stereo()
+track2 = track1.mono2stereo() #First you need to convert the signal type of track1
 track2.pan(position=-99)
 ~~~
