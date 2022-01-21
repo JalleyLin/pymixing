@@ -110,8 +110,16 @@ track3 = track2.copy()
 
 如果想要合并两条音轨（两个音频文件），可以用`group(a,b,name)`，使用时请务必保持两条音轨前段对齐。
 
-If you want to bounce 2 tracks into 1 track, try `group(a,b,name)`.Please keep 2 tracks aligned.
+If you want to bounce 2 tracks into 1 track, try `group(a,b,name)`.Before using, please keep 2 tracks aligned.
 
 ~~~python
 track_group = group(track2, track3, name='group_file.wav')
+~~~
+
+最后，可以用`normalize(self,i=0.5)`标准化（归一化）音频，i代表着振幅的最大值（取值范围为0-1）。
+
+Finally ,you can use `normalize(self,i=0.5)` to normalize the track, i means the peak (0 to 1) of the track.
+
+~~~python
+track_group.normalize(i=1)
 ~~~
