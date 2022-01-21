@@ -104,7 +104,7 @@ Like [pydub](http://pydub.com/)， pymixing also has powerful eaditing functions
 Using `cut(audio, time, crossfade=True, cross_time=200)`, it can **slice audio with（or without）the crossfade**. For example，cut track1 into 2 parts, and the former part has a length of 15.2 seconds.
 
 ~~~python
-a, b = cut(track1, time=15.2)
+a, b = pymx.cut(track1, time=15.2)
 ~~~
 
 调用`adjust_level(self,target)`,可以根据lufs电平**调节响度**，例如，将切分后的track1的前一部分（a）的lufs电平调节为-22lufs.
@@ -120,7 +120,7 @@ a.adjust_level(traget=-22)
 Using `splice(a, b, crossfade=True, cross_time=200)`, it can **concatenate 2 audio clips**. 
 
 ~~~python
-track2 = splice(a, b)
+track2 = pymx.splice(a, b)
 ~~~
 
 如果想要**复制音频片段**，可以用`copy(self)`。
@@ -136,7 +136,7 @@ track3 = track2.copy()
 If you want to **bounce 2 tracks into 1 track**, try `group(a,b,name)`.Before using, please keep 2 tracks aligned.
 
 ~~~python
-track_group = group(track2, track3, name='group_file.wav')
+track_group = pymx.group(track2, track3, name='group_file.wav')
 ~~~
 
 最后，可以用`normalize(self,i=0.5)`**标准化（归一化）音频**，i代表着振幅的最大值（取值范围为0-1）。
