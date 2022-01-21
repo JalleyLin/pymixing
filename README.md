@@ -8,9 +8,9 @@
 
 ## 下载 Installation
 
-Pymixing已经发布在PYPI上，在终端（Mac电脑）中输入以下代码就可以实现下载。
+Pymixing已经发布在[PYPI](https://pypi.org/project/pymixing/)上，在终端（Mac电脑）中输入以下代码就可以实现下载。
 
-Pymixing has been released on PYPI，In a modern Python, you can use the code  below to download and install the latest release of Pymixing and its dependencies. 
+Pymixing has been released on [PYPI](https://pypi.org/project/pymixing/)，In a modern Python, you can use the code  below to download and install the latest release of Pymixing and its dependencies. 
 
 ~~~python
 pip install pymixing
@@ -74,7 +74,7 @@ print(track1.rms)  # RMS level of the audio signal (dBFS)
 
 与[Pydub](http://pydub.com/)类似，Pymixing还内置有强大的音频剪辑功能。
 
-Like pydub， pymixing also has powerful eaditing functions.
+Like [pydub](http://pydub.com/)， pymixing also has powerful eaditing functions.
 
 调用`cut(audio, time, crossfade=True, cross_time=200)`，它能进行高精度的（精度为0.001s，但是没有按照60s换算）音频剪辑。例如，将track1在第15.2秒处进行切分，切分为两个部分，暂且命名为a和b。
 
