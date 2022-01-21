@@ -70,7 +70,7 @@ print(track1.signal_type) # 'stereo' or 'mono'
 **Convert a mono track into a stereo track**, try `mono2stereo(self)`.
 
 ~~~python
-track1.mono2stereo()
+track2 = track1.mono2stereo()
 ~~~
 
 将**立体声转换成单声道**，尝试`stereo2mono(self)`。
@@ -78,7 +78,7 @@ track1.mono2stereo()
 **Convert a stereo track into a mono track**, try `stereo2mono(self)`.
 
 ~~~python
-track1.stereo2mono()
+track3 = track2.stereo2mono()
 ~~~
 
 ### 检测音频参数  Checking audio features
@@ -178,8 +178,15 @@ For example, if you want the boost 'track_group' around 500Hz with 3dB:
 track_group.eq(type='peak',mode='manul',f0=500,Q=1.,gain=3)
 ~~~
 
-Pymixing内置有声像调节功能（panning）,可以将声源位置设置到左、中、右，但是使用前请确保将
+Pymixing内置有**声像调节功能（panning）**,通过调用 `pan(self,position)`，可以将声源位置设置到左、中、右，但是使用前请确保处理音轨的`object`类型为 `stereo_track`。
 
+Pymixing can also **pan the stereo signal to left/center/right** by using `pan(self,position)`. Before using, please make sure the`object` type of the input signal is `stereo_track`.
 
+position参数的取值范围为-100到100，取值小于0（-100，0）声像偏左，取值大于0（0,100），声像偏右，取值为0，声像居中。但是不能取-100和100两个值。例如，我们希望把track1（单声道信号）变成立体声格式后，将其声像调节到左边
 
+Value of position is from -100 to 100. If you want to pan signal to left， try -99 to -1. And if you want to pan signal to right， try 1 to 99.  
 
+~~~python
+track2 = track1.mono2stereo()
+track2.pan(position=-99)
+~~~
