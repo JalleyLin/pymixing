@@ -57,6 +57,29 @@ Besides，If you need to **export track1 as a 24 bit wav format mono & stereo ad
 track1.export24('F:/products/J_Full') 
 ~~~
 
+需要注意，pymixing将读取的音频文件区分为`mono_track`和`stereo_track`两种`object`,可以通过`self.signal_type`**查看音频文件的类型**。
+
+One thing should be clear is that, according to the input wav file, pymxing will devide the input audio signal into 2 `object` types, `mono_track` and `stereo_track`.You can use `self.signal_type` to **check the type of input audio signal**.
+
+~~~python
+print(track1.signal_type) # 'stereo' or 'mono'
+~~~
+
+将**单声道转换成立体声**，尝试`mono2stereo(self)`。
+
+**Convert a mono track into a stereo track**, try `mono2stereo(self)`.
+
+~~~python
+track1.mono2stereo()
+~~~
+
+将**立体声转换成单声道**，尝试`stereo2mono(self)`。
+
+**Convert a stereo track into a mono track**, try `stereo2mono(self)`.
+
+~~~python
+track1.stereo2mono()
+~~~
 
 ### 检测音频参数  Checking audio features
 
@@ -154,5 +177,9 @@ For example, if you want the boost 'track_group' around 500Hz with 3dB:
 ~~~python
 track_group.eq(type='peak',mode='manul',f0=500,Q=1.,gain=3)
 ~~~
+
+Pymixing内置有声像调节功能（panning）,可以将声源位置设置到左、中、右，但是使用前请确保将
+
+
 
 
