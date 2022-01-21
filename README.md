@@ -140,7 +140,7 @@ Pymixing provides 5 filter types: low pass fileter ('lp'), high pass filter ('hp
 
 ~~~shell
 type:    滤波器类型    filter types                                          'lp'/'hp'/'ls'/'hs'/'peak'
-mode     均衡器模式    mode of eq function                                   'auto'/'manul'
+mode     均衡器模式    mode of eq                                            'auto'/'manul'
 f0:      中心频率      center frequency point                                0 to (samplerate/2)     
 Q:       峰值带宽      Q value (bandwidth)                                   0 to 10 (dBFS)
 gain:    增益          How much you want to boost (+) or substract (-)       0 to 20 (dBFS)
