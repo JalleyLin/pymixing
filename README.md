@@ -72,7 +72,7 @@ print(track1.rms)  # RMS level of the audio signal (dBFS)
 
 ### 音频剪辑 Audio Editing
 
-与Pydub类似，Pymixing还内置有强大的音频剪辑功能。
+与[Pydub](http://pydub.com/)类似，Pymixing还内置有强大的音频剪辑功能。
 
 Like pydub， pymixing also has powerful eaditing functions.
 
