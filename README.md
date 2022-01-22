@@ -142,7 +142,7 @@ track_group = pymx.group(track2, track3, name='group_file.wav')
 
 最后，可以用`normalize(self,i=0.5)`**标准化（归一化）音频**，i代表着振幅的最大值（取值范围为0-1）。
 
-Finally ,you can use `normalize(self,i=0.5)` to **normalize the track**, i means the peak (0 to 1) of the track.
+Finally ,you can use `normalize(self,i=0.5)` to **normalize the track**, i means the maximum amplitude (0 to 1) of the audio track.
 
 ~~~python
 track_group.normalize(i=1)
