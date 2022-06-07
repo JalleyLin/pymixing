@@ -173,7 +173,7 @@ gain:    增益          How much you want to boost (+) or substract (-)       0
 
 例如，如果想用钟型滤波器增加'track_group'在500Hz处的能量，增量为3dB，代码如下:
 
-For example, if you want the boost 'track_group' around 500Hz with 3dB:
+For example, if you want to boost 'track_group' around 500Hz with 3dB:
 
 ~~~python
 track_group.eq(type='peak',mode='manul',f0=500,Q=1.,gain=3)
