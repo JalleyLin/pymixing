@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import scipy.io.wavfile
 from scipy import signal as sg
 
-### v 0.9.3 stereo version ###
+### v 0.9.4 stereo version ###
 
 #### target : build a simple daw in python（ may be used in Automatic Mixing :)）###
 
@@ -29,6 +29,8 @@ from scipy import signal as sg
 
 #6.支持16/24bit输出(done)
 
+#7.丰富效果器的类型(待完善)
+
 ### basic functions（可以加入更多的音频特征）###
 
 def dbfs(amp,bit=16):
@@ -45,8 +47,7 @@ def dbfs_to_amp(dbfs,bit=16):
 #normalization
 def MaxMinNormalization(x,i=0.5):
 	Max = 0
-	Min = 0
-	Max = max(x)
+	Max = max(abs(x))
 	x = x  / Max;
 	x *= i
 	return x;
@@ -468,6 +469,53 @@ def audio_effect(sig, ir_sig, sr, seg_len = 512):
 	return sig_norm
 
 #compressor
+def compressor(yIn, threshold, attack_time, release_time, ratio, makeup_gain,knee_width, knee, sample_rate, bit, yL_prev=0):
+	M = len(yIn)
+	x_g = np.zeros(M)# 每一个数据点输入的dbfs
+	x_l = np.zeros(M)# 每一个数据点的衰减量？
+	y_g = np.zeros(M)# 每一个数据点输出的dbfs
+	y_l = np.zeros(M)# 每一个数据点平滑后的衰减量
+	c   = np.zeros(M)# 处理后每一个数据点（应该乘以）的振幅值
+
+	alpha_attack  = np.exp(-1/(0.001 * sample_rate * attack_time))# attack=0时，alpha_attack=0；attack很大时，alpha_attack=e**0=1;
+	alpha_release = np.exp(-1/(0.001 * sample_rate * release_time))
+
+	for i in np.arange(M):         #将amplitude转化为dB
+		if np.abs(yIn[i]) <  0.000001:
+			if bit == 16:
+				x_g[i] = -96.0
+			elif bit == 24:
+				x_g[i] = -144.0
+		else:
+				x_g[i] = 20 * np.log10(np.abs(yIn[i]))
+
+		if knee == False: # 硬拐点
+			if x_g[i] >= threshold:
+				y_g[i] = threshold + (x_g[i] - threshold) / ratio 
+			else:
+				y_g[i] = x_g[i]
+
+		if knee == True: # 软拐点
+			half_knee_width = knee_width/2
+			double_knee_width = knee_width*2
+			if x_g[i] <= (threshold - half_knee_width):  # 不压缩
+				y_g[i] = x_g[i]
+			elif x_g[i] >= (threshold + half_knee_width):# 正常压缩
+				y_g[i] = (threshold + half_knee_width) + (x_g[i] - threshold) / ratio 
+			else:
+				y_g[i] = x_g[i] + ((((1/ratio) - 1)* (x_g[i] - threshold + half_knee_width)**2) /double_knee_width)
+
+		x_l[i] = x_g[i] - y_g[i] # 衰减量
+
+		if x_l[0] > yL_prev: # 新的数据点大于前一个点
+			y_l[i] = alpha_attack * yL_prev + (1 - alpha_attack ) * x_l[i] #有压缩的时候，用attack time平滑
+		else:                # 新的数据点小于前一个点
+			y_l[i] = alpha_release * yL_prev + (1 - alpha_release) * x_l[i] #没有压缩的时候，用release time平滑
+
+		c[i] = np.power(10.0, (makeup_gain - y_l[i]) / 20.0) # db to amplitude
+		yL_prev = y_l[i]     # 更新yL_prev
+
+	return c
 
 ### type of the track ###
 
@@ -592,6 +640,15 @@ class mono_track:
 		self.rms = RMS_detection(self.yIn)
 		self.peak = Peak_detection(self.yIn)
 		return self.yIn, self.Fs, self.lufs , self.rms, self.peak
+
+	def compressor(self, threshold, attack_time, release_time, ratio, makeup_gain, knee_width=0, knee=False, bit=24, yL_prev=0):
+		c = compressor(self.yIn, threshold, attack_time, release_time, ratio, makeup_gain, knee_width, knee, sample_rate=self.Fs, bit=bit)
+		print('{} has been compressored.'.format(self.name))
+		self.yIn = self.yIn * c
+
+		self.lufs = LUFS_detection(self.yIn,sr=self.Fs)
+		self.rms = RMS_detection(self.yIn)
+		self.peak = Peak_detection(self.yIn)
 
 class stereo_track:	
 	"""type for stereo signal input"""
@@ -755,7 +812,7 @@ class stereo_track:
 		self.peak_L = Peak_detection(self.left)
 		self.peak_R = Peak_detection(self.right)
 
-	def convolution(self,impluse):
+	def convolution(slef,impluse):
 		if self.Fs == impluse.Fs and impluse.signal_type =='mono':
 			left_channel = np.ravel(self.left)
 			right_channel = np.ravel(self.right)
@@ -776,3 +833,20 @@ class stereo_track:
 		elif mpluse.signal_type !='mono':
 			print('impluse must be a mono impluse response signal!')
 
+	def compressor(self, threshold, attack_time, release_time, ratio, makeup_gain, knee_width=0, knee=False, bit=24, yL_prev=0):
+		c = compressor(self.left, threshold, attack_time, release_time, ratio, makeup_gain, knee_width, knee, sample_rate=self.Fs, bit=bit)
+			
+		c = np.array(c.reshape(len(c),1))
+
+		self.left = self.left * c
+		self.right = self.right * c
+
+		print('{} has been compressored.'.format(self.name))
+
+		self.yIn = np.hstack([self.left, self.right])
+		self.lufs_L = LUFS_detection(self.left,sr=self.Fs)
+		self.lufs_R = LUFS_detection(self.right,sr=self.Fs)
+		self.rms_L = RMS_detection(self.left)
+		self.rms_R = RMS_detection(self.right)
+		self.peak_L = Peak_detection(self.left)
+		self.peak_R = Peak_detection(self.right)
